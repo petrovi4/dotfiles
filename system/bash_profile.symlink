@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}
+do
+  source $file
+done
+
+#############################################################################
+
+export PS1="\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[36m\]\h\[\e[m\] \[\e[01;33m\]\w\[\e[m\] \[\e[35;40m\]\\$\[\e[m\] "
+
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+umask 022
+
+#############################################################################
+
+export EDITOR="nano"
+
+export HISTFILESIZE=99999999
+export HISTSIZE=99999999
+export HISTCONTROL="ignoreboth"
+
+#############################################################################
+
+
+# Setting PATH for Python 3.7
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
+export PATH
+
+# Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
+
+# all of our bash files
+typeset -U config_files
+config_files=($ZSH/**/*.zsh)
