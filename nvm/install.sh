@@ -14,6 +14,6 @@ then
 	if test "$(uname)" = "Darwin"; then 
 		sudo npm install spoof -g
 	elif test "$(uname)" = "Linux"; then 
-		sudo npm install spoof -g
+		npm install spoof -g
 	fi
 fi
