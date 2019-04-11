@@ -5,17 +5,14 @@
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
-if test ! "$(uname)" = "Darwin"
-then
-  exit 0
+if test "$(uname)" = "Darwin"; then
+
+	# Check for Homebrew
+	if test ! $(which brew)
+	then
+		echo "  Installing Homebrew for you."
+
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	fi
+
 fi
-
-# Check for Homebrew
-if test ! $(which brew)
-then
-  echo "  Installing Homebrew for you."
-
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-exit 0

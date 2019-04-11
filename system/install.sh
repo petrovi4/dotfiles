@@ -1,9 +1,7 @@
-if test ! "$(uname)" = "Linux"
-then
-  exit 0
+if test "$(uname)" = "Linux"; then
+
+	apt-get update
+
+	apt-get install htop
+
 fi
-
-
-apt-get update
-
-apt-get install htop
