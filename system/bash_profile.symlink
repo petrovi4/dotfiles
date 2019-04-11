@@ -19,9 +19,7 @@ export EDITOR="nano"
 # all of our zsh files
 config_files=("$(find . -type f -name '*.zsh' -print)")
 
-for file in "${config_files[@]}"
-do
-  echo $file
+for file in "${config_files[@]}"; do
   source $file
 done
 
