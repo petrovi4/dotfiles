@@ -1,7 +1,6 @@
-if test ! "$(uname)" = "Darwin"
-then
-  exit 0
-fi
+if test "$(uname)" = "Darwin"; then
 
-alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
-alias watchos="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator\ \(Watch\).app"
+	alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
+	alias watchos="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator\ \(Watch\).app"
+
+fi
