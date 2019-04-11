@@ -8,7 +8,7 @@
 # Run ./set-defaults.sh and you'll be good to go.
 
 if test ! "$(uname)" = "Darwin"
-  then
+then
   exit 0
 fi
 

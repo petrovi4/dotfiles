@@ -6,7 +6,7 @@
 # using Homebrew.
 
 if test ! "$(uname)" = "Darwin"
-  then
+then
   exit 0
 fi
 

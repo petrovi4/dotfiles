@@ -1,5 +1,5 @@
 if test ! "$(uname)" = "Linux"
-  then
+then
   exit 0
 fi
 

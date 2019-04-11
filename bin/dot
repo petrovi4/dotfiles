@@ -41,6 +41,7 @@ done
 export ZSH=$HOME/.dotfiles
 
 if test "$(uname)" = "Darwin"
+then
 	# Set macOS defaults
 	$ZSH/macos/set-defaults.sh
 
