@@ -21,7 +21,7 @@ export EDITOR="nano"
 
 # all of our zsh files
 config_files="$(find . -type f -name '*.zsh' -print)"
-
+cd ~
 for file in $config_files; do
   source $file
 done

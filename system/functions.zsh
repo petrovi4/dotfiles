@@ -1,1 +1,3 @@
-cd "$PROJECTS/$1"
+c(){
+	cd "$PROJECTS/$1"
+}
