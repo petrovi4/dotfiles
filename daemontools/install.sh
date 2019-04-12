@@ -1,12 +1,13 @@
 if test "$(uname)" = "Linux"; then
-	cd /
-	git clone https://github.com/petrovi4/daemontools.git daemontools_076
+	rm -rf /daemontools
+	rm -rf /daemontools_076
+	git clone https://github.com/petrovi4/daemontools.git /daemontools_076
+
 	cd /daemontools_076
 	./package/install
-	cd /
 
-	rm -rf daemontools
-	mv daemontools_076 daemontools
+	rm -rf /daemontools
+	mv /daemontools_076 /daemontools
 
 	if grep -Fxq "svscanboot" /etc/rc.local
 	then
