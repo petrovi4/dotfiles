@@ -8,7 +8,7 @@ if test "$(uname)" = "Linux"; then
 	rm -rf /daemontools
 	mv /daemontools_076 /daemontools
 
-	if grep -Fxq "svscanboot" /etc/rc.local
+	if grep -Fq "svscanboot" /etc/rc.local
 	then
 		echo 'svscanboot already autoloaded'
 	else
