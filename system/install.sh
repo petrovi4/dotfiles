@@ -2,6 +2,8 @@ if test "$(uname)" = "Linux"; then
 
 	apt-get update
 
-	apt-get install htop
+	apt-get --assume-yes install build-essential
+
+	apt-get --assume-yes install htop
 
 fi
