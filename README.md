@@ -8,5 +8,3 @@ cd ~/.dotfiles
 script/bootstrap
 script/install
 ```
-
-TODO: Добавить nginx, daemontools и ...
