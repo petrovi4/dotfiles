@@ -15,6 +15,8 @@ if test "$(uname)" = "Linux"; then
 		echo 'svscanboot already autoloaded'
 	else
 		echo "csh -cf '/command/svscanboot &'" >> /etc/rc.local
+		chmod +x /etc/rc.local
+		systemctl enable rc-local
 	fi
 
 fi
