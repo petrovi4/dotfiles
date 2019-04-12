@@ -3,7 +3,9 @@ if test "$(uname)" = "Linux"; then
 	rm -rf /daemontools_076
 	git clone https://github.com/petrovi4/daemontools.git /daemontools_076
 
-	/daemontools_076/package/install
+	cd /daemontools_076
+	./package/install
+	cd "$(dirname $0)"/..
 
 	rm -rf /daemontools
 	mv /daemontools_076 /daemontools
