@@ -22,9 +22,3 @@ alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r'
 
 alias gf=gitFix
 alias gff='gA && gc "Fast Fix" && gp'
-
-gitFix() {
-  git add -A
-  git commit -m "$1"
-  git push
-}
