@@ -9,6 +9,6 @@ cd "$(dirname $0)"/..
 # find the installers and run them iteratively
 find . -name install.sh | while read installer
 do
-  echo  -e "\e[1;32mRun '$installer'"
+  echo  -e "\e[1;7mRun '$installer'"
   /bin/bash "${installer}"
 done
