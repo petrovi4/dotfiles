@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export ZSH=$HOME/.dotfiles
+export DOTFILES_ROOT=$HOME/.dotfiles
 export LC_ALL="en_US.UTF-8"
 
 if test "$(uname)" = "Darwin"; then
@@ -19,8 +19,8 @@ fi
 export EDITOR="nano"
 
 
-# all of our zsh files
-config_files="$(find . -type f -name '*.zsh' -print)"
+# all of our sh files
+config_files="$(find . -name '*.sh' -not -path '*/install.sh' -print)"
 cd ~
 for file in $config_files; do
   source $file

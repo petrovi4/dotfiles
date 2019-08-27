@@ -10,11 +10,6 @@ nvm install $node_version
 
 nvm alias default $node_version
 
-if test ! $(which spoof)
-then
-	if test "$(uname)" = "Darwin"; then 
-		sudo npm install spoof -g
-	elif test "$(uname)" = "Linux"; then 
-		npm install spoof -g
-	fi
+if test ! $(which spoof); then
+	npm install spoof -g
 fi

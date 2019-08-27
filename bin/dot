@@ -38,21 +38,36 @@ while test $# -gt 0; do
 	shift
 done
 
-export ZSH=$HOME/.dotfiles
+DOTFILES_ROOT=$HOME/.dotfiles
 
-if test "$(uname)" = "Darwin"
-then
+# Если это первый запуск и сейчас идёт инсталляция dotfiles
+# к моменту запуска файлов "install.sh" из папок нужно убедиться что Homebrew уже будет установлен ...
+if test "$(uname)" = "Darwin"; then
 	# Set macOS defaults
-	$ZSH/macos/set-defaults.sh
+	$DOTFILES_ROOT/macos/set-defaults.sh
 
 	# Install homebrew
-	$ZSH/homebrew/install.sh 2>&1
+	$DOTFILES_ROOT/homebrew/install.sh 2>&1
 
 	# Upgrade homebrew
 	echo "› brew update"
 	brew update
+
+elif test "$(uname)" = "Linux"; then
+
+	echo "› apt-get update"
+	apt-get update
+	
 fi
 
 # Install software
-echo "› $ZSH/script/install"
-$ZSH/script/install
+echo "› Installing ..."
+
+cd "$(dirname $0)"/..
+
+# find the installers and run them iteratively
+find . -name install.sh | while read installer
+do
+  echo  -e "\e[1;7mRun '$installer'\e[0m"
+  /bin/bash "${installer}"
+done

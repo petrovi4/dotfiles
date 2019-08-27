@@ -5,7 +5,7 @@
 
 if test "$(uname)" = "Darwin"; then
 
-	echo "› sudo softwareupdate -i -a"
+	echo "› Updating MacOs ..."
 	sudo softwareupdate -i -a
 
 fi

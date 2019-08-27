@@ -1,4 +1,6 @@
 if test "$(uname)" = "Linux"; then
+	echo "› Installing DaemonTools ..."
+
 	rm -rf /daemontools
 	rm -rf /daemontools_076
 	git clone https://github.com/petrovi4/daemontools.git /daemontools_076
@@ -19,4 +21,8 @@ if test "$(uname)" = "Linux"; then
 		systemctl enable rc-local
 	fi
 
+else
+
+	echo "› Skiping installation DaemonTools because it's not Linux"
+	
 fi
