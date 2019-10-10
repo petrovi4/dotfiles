@@ -3,13 +3,12 @@
 # command line interface to it that we can use to just install everything, so
 # yeah, let's do that.
 
-echo "› Updating MacOs ... (TODO: REMOVE COMMENT)"
-# sudo softwareupdate -i -a
+echo "› Updating MacOs ..."
+sudo softwareupdate -i -a
 
 $ZSH/mac/homebrew/install.sh
 
 find $ZSH/mac -name install.sh -not -path "*/homebrew/*" -not -path "*/system/*" | while read file; do
-	echo $file
 	chmod +x $file
   $file
 done

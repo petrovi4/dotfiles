@@ -62,3 +62,4 @@ unset config_files
 # bindkey "^[[B" down-line-or-beginning-search # Down
 
 
+plugins=(git ssh-agent)

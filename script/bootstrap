@@ -2,7 +2,8 @@
 #
 # bootstrap installs things.
 
-#chsh -s /bin/zsh
+chsh -s $(which zsh)
+
 
 cd "$(dirname "$0")/.."
 if test "$(uname)" = "Darwin"; then 
