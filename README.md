@@ -3,7 +3,7 @@
 Установка:
 
 ```sh
-git clone https://github.com/petrovi4/dotfiles.git ~/.dotfiles
+git clone git@github.com:petrovi4/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./script/bootstrap
 ```
