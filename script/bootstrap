@@ -2,7 +2,9 @@
 #
 # bootstrap installs things.
 
-chsh -s $(which zsh)
+if [ $SHELL != $(which zsh) ]; then
+	chsh -s $(which zsh)
+fi
 
 
 cd "$(dirname "$0")/.."

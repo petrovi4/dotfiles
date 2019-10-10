@@ -1,3 +1,6 @@
+# Инфа про разные файлы zsh
+# https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
+
 set -g default-command /bin/zsh
 set -g default-shell /bin/zsh
 
@@ -61,5 +64,3 @@ unset config_files
 # bindkey "^[[A" up-line-or-beginning-search # Up
 # bindkey "^[[B" down-line-or-beginning-search # Down
 
-
-plugins=(git ssh-agent)

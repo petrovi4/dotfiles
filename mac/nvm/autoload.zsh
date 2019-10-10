@@ -6,6 +6,7 @@ declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholena
 
 NODE_GLOBALS+=("node")
 NODE_GLOBALS+=("nvm")
+
 for cmd in "${NODE_GLOBALS[@]}"; do
-	eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+	eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@; }"
 done
