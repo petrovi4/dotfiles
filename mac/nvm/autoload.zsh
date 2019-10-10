@@ -1,5 +1,3 @@
-echo "$(date +"%H:%M:%S:%s") HERE0"
-
 load_nvm () {
 	[ -s "$BREW_NVM_DIR/nvm.sh" ] && . "$BREW_NVM_DIR/nvm.sh"
 }

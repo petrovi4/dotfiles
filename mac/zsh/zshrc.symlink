@@ -19,7 +19,7 @@ typeset -U config_files
 config_files=($ZSH/**/*.zsh)
 
 
-echo 'Load paths'
+# echo 'Load paths'
 
 # загружаем все дополнения PATH переменной
 for file in ${(M)config_files:#*/path.zsh}; do
@@ -27,7 +27,7 @@ for file in ${(M)config_files:#*/path.zsh}; do
 done
 
 
-echo 'Load all, except paths and completions'
+# echo 'Load all, except paths and completions'
 
 # грузим все zsh файлы кроме path (загрузили выше) и completion (загрузим после автокомплита)
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
@@ -35,14 +35,14 @@ for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
 done
 
 
-echo 'Load autocomplete'
+# echo 'Load autocomplete'
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
 
 
-echo 'Load topics completion'
+# echo 'Load topics completion'
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}; do
