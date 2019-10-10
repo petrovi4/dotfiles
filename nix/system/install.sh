@@ -8,8 +8,7 @@ if ! [ -f ~/.ssh/id_rsa ]; then
 fi
 	
 
-find .. -name install.sh -not -path "../system/*" | while read installer
-do
-  echo  -e "\e[1;7mRun '$installer'\e[0m"
-  /bin/bash "${installer}"
+find $ZSH/mac -name install.sh -not -path "*/system/*" | while read file; do
+	chmod +x $file
+  $file
 done

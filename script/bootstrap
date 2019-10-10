@@ -158,7 +158,7 @@ fi
 
 
 
-if [ -f $DOTFILES_OS/system/set-defaults.sh ]; then
+if [ -f $DOTFILES_OS/system/install.sh ]; then
 info "installing dependencies"
 $DOTFILES_OS/system/install.sh 2>&1
 fi

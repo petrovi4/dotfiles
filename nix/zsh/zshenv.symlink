@@ -1,1 +1,5 @@
-export PROJECTS="~/projects/"
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles
+
+# your project folder that we can `c [tab]` to
+export PROJECTS=~/projects
