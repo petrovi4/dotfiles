@@ -155,6 +155,7 @@ install_symlinks
 
 if [ -f $DOTFILES_OS/system/set-defaults.sh ]; then
 info "set defaults"
+chmod +x $DOTFILES_OS/system/set-defaults.sh
 $DOTFILES_OS/system/set-defaults.sh
 fi
 
@@ -162,6 +163,7 @@ fi
 
 if [ -f $DOTFILES_OS/system/install.sh ]; then
 info "installing dependencies"
+chmod +x $DOTFILES_OS/system/install.sh
 $DOTFILES_OS/system/install.sh 2>&1
 fi
 
