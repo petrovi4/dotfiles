@@ -1,1 +1,5 @@
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles/mac
+
+
 export PROJECTS="~/projects/"
