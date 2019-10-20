@@ -2,4 +2,4 @@
 export ZSH=$HOME/.dotfiles/mac
 
 
-export PROJECTS="~/projects/"
+export PROJECTS="~/projects"
