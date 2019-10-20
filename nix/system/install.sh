@@ -8,7 +8,7 @@ if ! [ -f ~/.ssh/id_rsa ]; then
 fi
 	
 
-find $ZSH/mac -name install.sh -not -path "*/system/*" | while read file; do
+find $ZSH/nix -name install.sh -not -path "*/system/*" | while read file; do
 	chmod +x $file
   $file
 done
