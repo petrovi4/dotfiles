@@ -20,7 +20,8 @@ brew "redis"
 brew "wget"
 
 cask "android-platform-tools"
-cask "fastlane"
+cask "docker"
+#cask "fastlane"
 cask "visual-studio-code"
 
 
