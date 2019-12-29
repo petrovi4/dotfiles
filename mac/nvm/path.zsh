@@ -1,2 +1,4 @@
 export NVM_DIR=$HOME/.nvm
-export BREW_NVM_DIR=$(brew --prefix)/opt/nvm
+
+# "/usr/local" - it's result of "brew --prefix" command
+export BREW_NVM_DIR=/usr/local/opt/nvm 

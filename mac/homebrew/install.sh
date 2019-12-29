@@ -11,6 +11,6 @@ brew update
 
 
 echo "> brew bundle"
-brew bundle --file="$ZSH/mac/homebrew/Brewfile"
+brew bundle --file="$ZSH/homebrew/Brewfile"
 
 

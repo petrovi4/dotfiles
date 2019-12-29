@@ -2,7 +2,9 @@ alias gl='git log'
 alias gll="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 alias gs='git status'
+alias пы='gs'
 alias gA='git add -A'
+alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
 alias gpl='git pull'

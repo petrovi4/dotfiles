@@ -1,37 +1,4 @@
-# Инфа про разные файлы zsh
-# https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
-
-set -g default-command /bin/zsh
-set -g default-shell /bin/zsh
-
-
-# Stash your environment variables in ~/.localrc. This means they'll stay out
-# of your main dotfiles repository (which may be public, like this one), but
-# you'll have access to them in your scripts.
-if [[ -a ~/.localrc ]]; then
-  source ~/.localrc
-fi
-
-
-# all of our zsh files
-typeset -U config_files
-config_files=($ZSH/**/*.zsh)
-
-
-# echo 'Load paths'
-
-# загружаем все дополнения PATH переменной
-for file in ${(M)config_files:#*/path.zsh}; do
-  source $file
-done
-
-
-# echo 'Load all, except paths and completions'
-
-# грузим все zsh файлы кроме path (загрузили выше) и completion (загрузим после автокомплита)
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
-  source $file
-done
+#!/bin/zsh
 
 
 # echo 'Load autocomplete'
@@ -44,11 +11,13 @@ compinit
 # echo 'Load topics completion'
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}; do
-  source $file
+for file in $ZSH_FILES; do
+	if [[ $file =~ "/(completion|prompt).zsh" ]]; then
+		# echo "(zshrc) \t Loading $file"
+		source $file
+	fi
 done
 
-unset config_files
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
@@ -59,4 +28,3 @@ unset config_files
 # zle -N down-line-or-beginning-search
 # bindkey "^[[A" up-line-or-beginning-search # Up
 # bindkey "^[[B" down-line-or-beginning-search # Down
-

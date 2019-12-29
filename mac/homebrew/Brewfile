@@ -10,7 +10,6 @@ brew "docker"
 brew "git"
 brew "htop"
 brew "nginx"
-# brew "node"
 brew "nvm"
 brew "postgresql", restart_service: true
 brew "postgis"
@@ -21,7 +20,6 @@ brew "wget"
 
 cask "android-platform-tools"
 cask "docker"
-#cask "fastlane"
 cask "visual-studio-code"
 
 

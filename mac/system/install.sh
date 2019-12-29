@@ -6,9 +6,9 @@
 echo "› Updating MacOs ..."
 sudo softwareupdate -i -a
 
-$ZSH/mac/homebrew/install.sh
+$ZSH/homebrew/install.sh
 
-find $ZSH/mac -name install.sh -not -path "*/homebrew/*" -not -path "*/system/*" | while read file; do
+find $ZSH -name install.sh -not -path "*/homebrew/*" -not -path "*/system/*" | while read file; do
 	chmod +x $file
   . $file
 done
