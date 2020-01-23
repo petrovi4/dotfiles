@@ -1,5 +1,22 @@
+#!/bin/zsh
+
+# Stash your environment variables in ~/.localrc. This means they'll stay out
+# of your main dotfiles repository (which may be public, like this one), but
+# you'll have access to them in your scripts.
+if [[ -a ~/.localrc ]]; then
+  source ~/.localrc
+fi
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles/nix
 
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/projects
+
+# load all env variables
+
+for file in $ZSH_FILES; do
+	if [[ $file =~ "/path.zsh" ]]; then
+		# echo "(zshenv)\t Loading $file"
+		source $file
+	fi
+done
+
