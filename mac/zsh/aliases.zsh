@@ -17,3 +17,6 @@ alias cb='carthage build --platform ios'
 
 alias cnt_req='find . -print | wc -l'
 alias cnt='ls -1 . | wc -l'
+
+alias pi='ssh pi'
+alias h='ssh h'
