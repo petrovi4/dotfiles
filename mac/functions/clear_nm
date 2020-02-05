@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# How it works
+# Since this blog is driven towards educating about the process of solving problems versus just providing blind answers, lets take some time to break this command down into pieces to examine how it works.
+
+# find . Instructs the find program to search for files in the current directory ..
+# -name "node_modules" Instructs the find program to search for files named “node_modules”.
+# -type d Instructs the find program to only look for file directories named “node_modules”.
+# -prune Instructs the find program to not descend into the current file/directory for it to exclude child “node_modules” directories. On Mac, since -d was specified, -prune has no effect on the find program’s lookup results (per the man pages). However, on Linux, -prune still instructs the find program to not descend into the current file/directory.
+# -exec rm -rf '{}' + Instructs the find program to execute rm -rf on the matching results. The code '{}' + instructs the command line to be built by appending each selected file name at the end thus invoking the rm -rf command less times than the total number of “node_modules” directory matches. This helps with performance.
+
+find . -name "node_modules" -type d -prune -exec rm -rf '{}' +
