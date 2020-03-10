@@ -10,5 +10,5 @@ $ZSH/homebrew/install.sh
 
 find $ZSH -name install.sh -not -path "*/homebrew/*" -not -path "*/system/*" | while read file; do
 	chmod +x $file
-  . $file
+	. $file
 done
