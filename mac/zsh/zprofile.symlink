@@ -18,3 +18,5 @@ for file in $ZSH_FILES; do
 	source $file
 done
 
+
+export PATH="$HOME/.cargo/bin:$PATH"

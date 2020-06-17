@@ -1,7 +1,11 @@
 #!/bin/zsh
 
 # echo 'Disabling Autocorrect'
-unsetopt correct_all
+#unsetopt correct_all
+#unsetopt correct
+#DISABLE_CORRECTION="true"
+#setopt nocorrectall
+
 
 # echo 'Load autocomplete'
 
