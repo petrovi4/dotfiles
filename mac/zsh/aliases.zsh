@@ -3,9 +3,9 @@ alias reload!='. ~/.zshrc'
 #alias ls='ls -GFh'
 #alias ll='ls -GHh -la'
 
-alias ls='exa -GFh'
-alias ll='exa -GHhla'
-alias lt='exa -GHhlaT -I node_modules\|.git --git-ignore'
+alias ls='exa -Fh'
+alias ll='exa -Hhla'
+alias lt='exa -HhlaT -I node_modules\|.git --git-ignore'
 alias ..='cd ..'
 alias ...='cd ../..'
 
@@ -27,3 +27,8 @@ alias np='ssh nanoPi'
 alias h='ssh h'
 alias z='ssh z'
 alias f='ssh f'
+
+
+alias fTunnel='ssh -L 9999:localhost:5432 f'
+
+alias get_idf='. /Users/petrovi4/projects/github/esp-idf/export.sh'
