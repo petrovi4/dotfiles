@@ -1,13 +1,34 @@
 #!/usr/bin/env bash
 #
-# bootstrap installs things.
+# Bootstrap installs things.
 
+# Colorize output. See https://stackoverflow.com/questions/4332478/x/4332530#4332530
+BLACK=$(tput setaf 0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+LIME_YELLOW=$(tput setaf 190)
+POWDER_BLUE=$(tput setaf 153)
+BLUE=$(tput setaf 4)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+BRIGHT=$(tput bold)
+NORMAL=$(tput sgr0)
+BLINK=$(tput blink)
+REVERSE=$(tput smso)
+UNDERLINE=$(tput smul)
+# ... end of colorization
+
+
+# Set zsh as shell if any
 if [ $SHELL != $(which zsh) ]; then
 	chsh -s $(which zsh)
 fi
 
-
+# Go to the root of dotfiles folder
 cd "$(dirname "$0")/.."
+# Set OS folder. "pwd -P" ignores symlinks
 if test "$(uname)" = "Darwin"; then 
 	DOTFILES_OS="$(pwd -P)/mac"
 elif test "$(uname)" = "Linux"; then 
@@ -15,27 +36,27 @@ elif test "$(uname)" = "Linux"; then
 fi
 
 
+# Stop on first error
 set -e
 
-echo ''
-
 info () {
-  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+  printf "\r  [ ${BLUE}..${NORMAL} ] $1\n"
 }
 
 user () {
-  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+  printf "\r  [ ${YELLOW}??${NORMAL} ] $1\n"
 }
 
 success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+  printf "\r  [ ${GREEN}OK${NORMAL} ] $1\n"
 }
 
 fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  printf "\r  [ ${RED}FAIL${NORMAL} ] $1\n"
   echo ''
   exit
 }
+
 
 setup_gitconfig () {
 	if ! [ -f $DOTFILES_OS/git/gitconfig.local.symlink ]
@@ -76,11 +97,8 @@ link_file () {
 
       if [ "$currentSrc" == "$src" ]
       then
-
         skip=true;
-
       else
-
         user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
         [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
         read -n 1 action
