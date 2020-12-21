@@ -1,21 +1,21 @@
 #!/bin/zsh
 
-# Stash your environment variables in ~/.localrc. This means they'll stay out
+# Stash your environment variables in ~/.dotfiles_detached/zshenv. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
-if [[ -a ~/.localrc ]]; then
-  source ~/.localrc
+if [[ -e ~/.dotfiles_detached/zshenv ]]; then
+	source ~/.dotfiles_detached/zshenv
 fi
-
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles/mac
 
 ZSH_FILES=($ZSH/**/*.zsh)
 
+export NODE_PATH="/usr/local/bin"
+export NODE_BINARY="/usr/local/bin"
 
 # load all env variables
-
 for file in $ZSH_FILES; do
 	if [[ $file =~ "/path.zsh" ]]; then
 		# echo "(zshenv)\t Loading $file"

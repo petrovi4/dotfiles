@@ -6,6 +6,9 @@
 echo "› Updating MacOs ..."
 sudo softwareupdate -i -a
 
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles/mac
+
 $ZSH/homebrew/install.sh
 
 find $ZSH -name install.sh -not -path "*/homebrew/*" -not -path "*/system/*" | while read file; do

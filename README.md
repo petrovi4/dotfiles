@@ -2,6 +2,8 @@
 
 Установка:
 
+Git уже идёт с MacOs, ничего дополнительно ставить не нужно.
+
 ```sh
 git clone git@github.com:petrovi4/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
@@ -22,6 +24,9 @@ sudo xcodebuild -license
 cd ~/.dotfiles
 ./script/bootstrap
 ```
+
+В конце в папку ~/.dotfiles_detached нужно распаковать то, что забэкапили перед обновлением. Эта папка с приватными данными, которая лежит вне репозитория и её содержимое следует бэкапить вручную
+
 
 ## Описание
 

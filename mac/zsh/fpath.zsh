@@ -7,8 +7,4 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-
-export ADF_PATH=~/projects/github/esp-adf
-
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export NODE_BINARY=$HOME/.nvm/versions/node/v12.18.0/bin/

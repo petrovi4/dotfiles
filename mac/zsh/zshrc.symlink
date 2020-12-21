@@ -6,47 +6,39 @@
 autoload -U compinit
 compinit
 
-# echo 'Disabling Autocorrect'
-unsetopt correct_all
-unsetopt correct
-DISABLE_CORRECTION="true"
-setopt nocorrectall
-#zstyle ':completion:*' hidden all
+zstyle ':completion:*' menu select
 
+# echo 'Disabling Autocorrect'
+# unsetopt correct_all
+# unsetopt correct
+# DISABLE_CORRECTION="true"
+# setopt nocorrectall
+#zstyle ':completion:*' hidden all
 
 # echo 'Load topics completion'
 
 # load every completion after autocomplete loads
-#for file in $ZSH_FILES; do
-#	if [[ $file =~ "/(completion|prompt).zsh" ]]; then
-#		# echo "(zshrc) \t Loading $file"
-#		source $file
-#	fi
-#done
+for file in $ZSH_FILES; do
+	if [[ $file =~ "/(completion|prompt).zsh" ]]; then
+		# echo "(zshrc) \t Loading $file"
+		source $file
+	fi
+done
 
 # load every completion after autocomplete loads
 for file in $ZSH_FILES; do
-       if [[ $file =~ "/(prompt).zsh" ]]; then
-               # echo "(zshrc) \t Loading $file"
-               source $file
-       fi
+	if [[ $file =~ "/(prompt).zsh" ]]; then
+		# echo "(zshrc) \t Loading $file"
+		source $file
+	fi
 done
-
-
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
 # Search through history for previous commands matching everything up to current cursor position. Move the cursor to the end of line after each match.
-# autoload -U up-line-or-beginning-search
-# autoload -U down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# bindkey "^[[A" up-line-or-beginning-search # Up
-# bindkey "^[[B" down-line-or-beginning-search # Down
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/petrovi4/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/petrovi4/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/petrovi4/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/petrovi4/google-cloud-sdk/completion.zsh.inc'; fi
-
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search   # Up
+bindkey "^[[B" down-line-or-beginning-search # Down

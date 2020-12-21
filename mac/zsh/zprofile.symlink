@@ -8,7 +8,6 @@
 set -g default-command /bin/zsh
 set -g default-shell /bin/zsh
 
-
 # echo 'Load all, except paths (already loaded in zshenv) and completions (will load later, after compinit)'
 for file in $ZSH_FILES; do
 	if [[ $file =~ "/(path|completion|prompt).zsh" ]]; then
@@ -18,10 +17,5 @@ for file in $ZSH_FILES; do
 	source $file
 done
 
-
-export NODE_PATH="$HOME/.nvm/versions/node/v12.18.0/bin/:$NODE_PATH"
-
-# Setting PATH for Python 3.8
-# The original version is saved in .zprofile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
-export PATH
+# Not in zshenv, because miniconda must be before system python PATH (which appends in "env" step)
+export PATH="/opt/miniconda3/bin:$PATH"

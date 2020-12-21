@@ -20,7 +20,6 @@ REVERSE=$(tput smso)
 UNDERLINE=$(tput smul)
 # ... end of colorization
 
-
 # Set zsh as shell if any
 if [ $SHELL != $(which zsh) ]; then
 	chsh -s $(which zsh)
@@ -29,163 +28,149 @@ fi
 # Go to the root of dotfiles folder
 cd "$(dirname "$0")/.."
 # Set OS folder. "pwd -P" ignores symlinks
-if test "$(uname)" = "Darwin"; then 
+if test "$(uname)" = "Darwin"; then
 	DOTFILES_OS="$(pwd -P)/mac"
-elif test "$(uname)" = "Linux"; then 
+elif test "$(uname)" = "Linux"; then
 	DOTFILES_OS="$(pwd -P)/nix"
 fi
-
 
 # Stop on first error
 set -e
 
-info () {
-  printf "\r  [ ${BLUE}..${NORMAL} ] $1\n"
+info() {
+	printf "\r  [ ${BLUE}..${NORMAL} ] $1\n"
 }
 
-user () {
-  printf "\r  [ ${YELLOW}??${NORMAL} ] $1\n"
+user() {
+	printf "\r  [ ${YELLOW}??${NORMAL} ] $1\n"
 }
 
-success () {
-  printf "\r  [ ${GREEN}OK${NORMAL} ] $1\n"
+success() {
+	printf "\r  [ ${GREEN}OK${NORMAL} ] $1\n"
 }
 
-fail () {
-  printf "\r  [ ${RED}FAIL${NORMAL} ] $1\n"
-  echo ''
-  exit
+fail() {
+	printf "\r  [ ${RED}FAIL${NORMAL} ] $1\n"
+	echo ''
+	exit
 }
 
+setup_gitconfig() {
+	if ! [ -f $DOTFILES_OS/git/gitconfig.local.symlink ]; then
+		info 'setup gitconfig'
 
-setup_gitconfig () {
-	if ! [ -f $DOTFILES_OS/git/gitconfig.local.symlink ]
-  then
-    info 'setup gitconfig'
+		git_credential='cache'
+		if [ "$(uname -s)" == "Darwin" ]; then
+			git_credential='osxkeychain'
+		fi
 
-    git_credential='cache'
-    if [ "$(uname -s)" == "Darwin" ]
-    then
-      git_credential='osxkeychain'
-    fi
+		user ' - What is your github author name?'
+		read -e git_authorname
+		user ' - What is your github author email?'
+		read -e git_authoremail
 
-    user ' - What is your github author name?'
-    read -e git_authorname
-    user ' - What is your github author email?'
-    read -e git_authoremail
+		sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" $DOTFILES_OS/git/gitconfig.local.symlink.example >$DOTFILES_OS/git/gitconfig.local.symlink
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" $DOTFILES_OS/git/gitconfig.local.symlink.example > $DOTFILES_OS/git/gitconfig.local.symlink
-
-    success 'gitconfig'
-  fi
+		success 'gitconfig'
+	fi
 }
 
+link_file() {
+	local src=$1 dst=$2
 
-link_file () {
-  local src=$1 dst=$2
+	local overwrite= backup= skip=
+	local action=
 
-  local overwrite= backup= skip=
-  local action=
+	if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]; then
 
-  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
-  then
+		if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]; then
 
-    if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
-    then
+			local currentSrc="$(readlink $dst)"
 
-      local currentSrc="$(readlink $dst)"
-
-      if [ "$currentSrc" == "$src" ]
-      then
-        skip=true;
-      else
-        user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
+			if [ "$currentSrc" == "$src" ]; then
+				skip=true
+			else
+				user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
         [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 action
+				read -n 1 action
 
-        case "$action" in
-          o )
-            overwrite=true;;
-          O )
-            overwrite_all=true;;
-          b )
-            backup=true;;
-          B )
-            backup_all=true;;
-          s )
-            skip=true;;
-          S )
-            skip_all=true;;
-          * )
-            ;;
-        esac
+				case "$action" in
+				o)
+					overwrite=true
+					;;
+				O)
+					overwrite_all=true
+					;;
+				b)
+					backup=true
+					;;
+				B)
+					backup_all=true
+					;;
+				s)
+					skip=true
+					;;
+				S)
+					skip_all=true
+					;;
+				*) ;;
 
-      fi
+				esac
 
-    fi
+			fi
 
-    overwrite=${overwrite:-$overwrite_all}
-    backup=${backup:-$backup_all}
-    skip=${skip:-$skip_all}
+		fi
 
-    if [ "$overwrite" == "true" ]
-    then
-      rm -rf "$dst"
-      success "removed $dst"
-    fi
+		overwrite=${overwrite:-$overwrite_all}
+		backup=${backup:-$backup_all}
+		skip=${skip:-$skip_all}
 
-    if [ "$backup" == "true" ]
-    then
-      mv "$dst" "${dst}.backup"
-      success "moved $dst to ${dst}.backup"
-    fi
+		if [ "$overwrite" == "true" ]; then
+			rm -rf "$dst"
+			success "removed $dst"
+		fi
 
-    if [ "$skip" == "true" ]
-    then
-      success "skipped $src"
-    fi
-  fi
+		if [ "$backup" == "true" ]; then
+			mv "$dst" "${dst}.backup"
+			success "moved $dst to ${dst}.backup"
+		fi
 
-  if [ "$skip" != "true" ]  # "false" or empty
-  then
-    ln -s "$1" "$2"
-    success "linked $1 to $2"
-  fi
+		if [ "$skip" == "true" ]; then
+			success "skipped $src"
+		fi
+	fi
+
+	if [ "$skip" != "true" ]; then # "false" or empty
+		ln -s "$1" "$2"
+		success "linked $1 to $2"
+	fi
 }
 
-install_symlinks () {
-  info 'installing dotfiles'
+install_symlinks() {
+	info 'installing dotfiles'
 
-  local overwrite_all=false backup_all=false skip_all=false
+	local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find -H "$DOTFILES_OS" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
-  do
-    dst="$HOME/.$(basename "${src%.*}")"
-    link_file "$src" "$dst"
-  done
+	for src in $(find -H "$DOTFILES_OS" -maxdepth 2 -name '*.symlink' -not -path '*.git*'); do
+		dst="$HOME/.$(basename "${src%.*}")"
+		link_file "$src" "$dst"
+	done
 }
-
 
 setup_gitconfig
 install_symlinks
 
-
-
 if [ -f $DOTFILES_OS/system/set-defaults.sh ]; then
-info "set defaults"
-chmod +x $DOTFILES_OS/system/set-defaults.sh
-$DOTFILES_OS/system/set-defaults.sh
+	info "set defaults"
+	chmod +x $DOTFILES_OS/system/set-defaults.sh
+	$DOTFILES_OS/system/set-defaults.sh
 fi
-
-
 
 if [ -f $DOTFILES_OS/system/install.sh ]; then
-info "installing dependencies"
-chmod +x $DOTFILES_OS/system/install.sh
-$DOTFILES_OS/system/install.sh 2>&1
+	info "installing dependencies"
+	chmod +x $DOTFILES_OS/system/install.sh
+	$DOTFILES_OS/system/install.sh 2>&1
 fi
-
-
 
 echo ''
 echo '  All installed!'
