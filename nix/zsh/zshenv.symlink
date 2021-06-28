@@ -10,8 +10,9 @@ fi
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles/nix
 
-# load all env variables
+ZSH_FILES=($ZSH/**/*.zsh)
 
+# load all env variables
 for file in $ZSH_FILES; do
 	if [[ $file =~ "/path.zsh" ]]; then
 		# echo "(zshenv)\t Loading $file"

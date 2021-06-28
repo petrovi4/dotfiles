@@ -1,13 +1,12 @@
 #!/bin/zsh
 
-# Инфа про разные файлы zsh
+# About zsh files
 # https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
-# или в моём гисте
+# or in my gist
 # https://gist.github.com/petrovi4/59c306c2e3324a9fe36bdc748fe5680b
 
 set -g default-command /bin/zsh
 set -g default-shell /bin/zsh
-
 
 # echo 'Load all, except paths (already loaded in zshenv) and completions (will load later, after compinit)'
 for file in $ZSH_FILES; do
@@ -17,4 +16,3 @@ for file in $ZSH_FILES; do
 	# echo "(zprofile)\t Loading $file"
 	source $file
 done
-

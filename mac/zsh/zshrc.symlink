@@ -8,13 +8,6 @@ compinit
 
 zstyle ':completion:*' menu select
 
-# echo 'Disabling Autocorrect'
-# unsetopt correct_all
-# unsetopt correct
-# DISABLE_CORRECTION="true"
-# setopt nocorrectall
-#zstyle ':completion:*' hidden all
-
 # echo 'Load topics completion'
 
 # load every completion after autocomplete loads
@@ -25,13 +18,6 @@ for file in $ZSH_FILES; do
 	fi
 done
 
-# load every completion after autocomplete loads
-for file in $ZSH_FILES; do
-	if [[ $file =~ "/(prompt).zsh" ]]; then
-		# echo "(zshrc) \t Loading $file"
-		source $file
-	fi
-done
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys

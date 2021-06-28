@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-# Инфа про разные файлы zsh
+# About zsh files
 # https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
-# или в моём гисте
+# or in my gist
 # https://gist.github.com/petrovi4/59c306c2e3324a9fe36bdc748fe5680b
 
 set -g default-command /bin/zsh
@@ -16,11 +16,3 @@ for file in $ZSH_FILES; do
 	# echo "(zprofile)\t Loading $file"
 	source $file
 done
-
-# Not in zshenv, because miniconda must be before system python PATH (which appends in "env" step)
-#export PATH="/opt/miniconda3/bin:$PATH"
-
-# Setting PATH for Python 3.8
-# The original version is saved in .zprofile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
-export PATH

@@ -12,9 +12,6 @@ export ZSH=$HOME/.dotfiles/mac
 
 ZSH_FILES=($ZSH/**/*.zsh)
 
-export NODE_PATH="/usr/local/bin"
-export NODE_BINARY="/usr/local/bin"
-
 # load all env variables
 for file in $ZSH_FILES; do
 	if [[ $file =~ "/path.zsh" ]]; then
