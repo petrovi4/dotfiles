@@ -10,4 +10,4 @@ echo "› brew update"
 brew update
 
 echo "> brew bundle"
-brew bundle --file="$ZSH/homebrew/Brewfile"
+brew bundle --file="$SYSTEM_ROOT/homebrew/Brewfile"
