@@ -6,7 +6,7 @@ if ! [ -f ~/.ssh/id_rsa ]; then
 	ssh-keygen -f ~/.ssh/id_rsa -t rsa -b 4096 -N ""
 fi
 
-find $ZSH -name install.sh -not -path "*/system/*" | while read file; do
+find $SYSTEM_ROOT -name install.sh -not -path "*/system/*" | while read file; do
 	chmod +x $file
 	$file
 done

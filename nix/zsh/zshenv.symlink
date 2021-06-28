@@ -7,10 +7,10 @@ if [[ -e ~/.dotfiles_detached/zshenv ]]; then
 	source ~/.dotfiles_detached/zshenv
 fi
 
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles/nix
+# shortcut to this dotfiles path is $SYSTEM_ROOT
+export SYSTEM_ROOT=$HOME/.dotfiles/nix
 
-ZSH_FILES=($ZSH/**/*.zsh)
+ZSH_FILES=($SYSTEM_ROOT/**/*.zsh)
 
 # load all env variables
 for file in $ZSH_FILES; do
