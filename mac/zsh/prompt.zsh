@@ -1,9 +1,9 @@
 #!/bin/zsh
 
-# Генератор здесь
+# Generator here
 # https://zsh-prompt-generator.site/
 
-if (($+commands[git])); then
+if (($ + commands[git])); then
 	git="$commands[git]"
 else
 	git="/usr/bin/git"

@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-
 # echo 'Load autocomplete'
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
 
+zstyle ':completion:*' menu select
 
 # echo 'Load topics completion'
 
@@ -17,7 +17,6 @@ for file in $ZSH_FILES; do
 		source $file
 	fi
 done
-
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
