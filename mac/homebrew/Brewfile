@@ -15,11 +15,12 @@ brew "nginx"
 brew "postgresql", restart_service: true
 #brew "postgis"
 #brew "pyenv"
-#brew "rabbitmq"
+brew "rabbitmq"
 brew "redis"
 #brew "swiftlint"
 brew "wget"
 
 #cask "android-platform-tools"
-#cask "docker"
-#cask "visual-studio-code"
+cask "docker"
+cask "visual-studio-code"
+cask iterm2
