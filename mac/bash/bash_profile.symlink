@@ -1,0 +1,47 @@
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+export LSCOLORS="exfxcxdxbxegedabagacad"
+export CLICOLOR=true
+
+git_branch() {
+        echo $(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+}
+
+PROMPT="%F{88}%n%f@%F{14}%m%f %F{221}%~%f%F{221}/%f "
+
+RPROMPT=$'%F{88}$(git_branch)%f'
+
+
+alias reload!='. ~/.zshrc'
+
+#alias ls='ls -GFh'
+#alias ll='ls -GHh -la'
+
+alias ls='exa -Fh'
+alias ll='exa -Hhla'
+alias lt='exa -HhlaT -I node_modules\|.git --git-ignore'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+alias p='ping 8.8.8.8'
+
+alias e='exit'
+
+alias cdf='cd ~/projects/foxty/'
+alias cdt='cd ~/projects/trevelo/'
+
+alias cu='carthage update --platform ios'
+alias cb='carthage build --platform ios'
+
+alias cnt_req='find . -print | wc -l'
+alias cnt='ls -1 . | wc -l'
+
+alias pi='ssh pi'
+alias np='ssh nanoPi'
+alias h='ssh h'
+alias z='ssh z'
+alias f='ssh f'
+
+source ~/.dotfiles_detached/aliases
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
