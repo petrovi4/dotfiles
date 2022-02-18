@@ -19,6 +19,7 @@ brew "rabbitmq"
 brew "redis"
 #brew "swiftlint"
 brew "wget"
+brew "node@14"
 
 #cask "android-platform-tools"
 cask "docker"
