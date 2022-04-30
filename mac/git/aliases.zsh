@@ -8,6 +8,8 @@ alias gA='git add -A'
 alias ga='git add'
 
 alias gc='git commit -m'
+alias gca='git commit --amend --no-edit'
+alias gcf='git commit -n -m'
 
 alias gp='git push'
 alias gpl='git pull'
