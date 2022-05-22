@@ -21,6 +21,7 @@ alias пид='gbl'
 
 alias gr='git rebase'
 alias grd='git rebase develop'
+alias grc='git rebase --continue'
 
 alias gch='git checkout'
 
