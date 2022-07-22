@@ -9,3 +9,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:/opt/homebrew/sbin
