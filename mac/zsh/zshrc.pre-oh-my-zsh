@@ -1,0 +1,63 @@
+#!/bin/zsh
+
+# echo 'Load autocomplete'
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
+
+zstyle ':completion:*' menu select
+
+# echo 'Load topics completion'
+
+# load every completion after autocomplete loads
+for file in $ZSH_FILES; do
+	if [[ $file =~ "/(completion|prompt).zsh" ]]; then
+		# echo "(zshrc) \t Loading $file"
+		source $file
+	fi
+done
+
+
+# Better history
+# Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
+# Search through history for previous commands matching everything up to current cursor position. Move the cursor to the end of line after each match.
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search   # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
+
+
+function title() { echo -e "\033]0;$(basename $PWD)" }
+
+
+
+
+# Override auto-title when static titles are desired ($ title My new title)
+title() { export TITLE_OVERRIDDEN=1; echo -en "\e]0;$*\a"}
+# Turn off static titles ($ autotitle)
+autotitle() { export TITLE_OVERRIDDEN=0 }; autotitle
+# Condition checking if title is overridden
+overridden() { [[ $TITLE_OVERRIDDEN == 1 ]]; }
+# Echo asterisk if git state is dirty
+gitDirty() { [[ $(git status 2> /dev/null | grep -o '\w\+' | tail -n1) != ("clean"|"") ]] && echo "*" }
+
+# Show cwd when shell prompts for input.
+tabtitle_precmd() {
+   if overridden; then return; fi
+   pwd=$(pwd) # Store full path as variable
+   cwd=${pwd##*/} # Extract current working dir only
+   print -Pn "\e]0;$cwd$(gitDirty)\a" # Replace with $pwd to show full path
+}
+[[ -z $precmd_functions ]] && precmd_functions=()
+precmd_functions=($precmd_functions tabtitle_precmd)
+
+# Prepend command (w/o arguments) to cwd while waiting for command to complete.
+tabtitle_preexec() {
+   if overridden; then return; fi
+   printf "\033]0;%s\a" "${1%% *} | $cwd$(gitDirty)" # Omit construct from $1 to show args
+}
+[[ -z $preexec_functions ]] && preexec_functions=()
+preexec_functions=($preexec_functions tabtitle_preexec)
