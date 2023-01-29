@@ -3,6 +3,7 @@ tap "homebrew/services"
 
 brew "ack"
 brew "aws-console"
+brew "awsebcli"
 brew "automake"
 brew "carthage"
 brew "cmake"
