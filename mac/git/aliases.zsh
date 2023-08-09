@@ -14,6 +14,10 @@ alias gcf='git commit -n -m'
 alias gp='git push'
 alias gpl='git pull'
 
+alias gchp='git cherry-pick'
+alias gchpc='git cherry-pick --continue'
+alias gchpa='git cherry-pick --abort'
+
 alias gb='git branch'
 
 alias gbl='git branch -l'

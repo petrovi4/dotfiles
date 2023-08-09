@@ -31,3 +31,5 @@
 	rebase = true
 [fetch]
 	prune = true
+[rerere]
+	enabled = true
