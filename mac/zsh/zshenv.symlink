@@ -21,4 +21,4 @@ for file in $ZSH_FILES; do
 done
 
 export PATH="$PATH:/Users/petrovi4/.foundry/bin"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

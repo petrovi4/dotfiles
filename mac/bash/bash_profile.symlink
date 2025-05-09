@@ -45,4 +45,4 @@ alias f='ssh f'
 source ~/.dotfiles_detached/aliases
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

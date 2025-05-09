@@ -3,9 +3,9 @@ alias reload!='. ~/.zshrc'
 #alias ls='ls -GFh'
 #alias ll='ls -GHh -la'
 
-alias ls='exa -Fh'
-alias ll='exa -Hhla'
-alias lt='exa -HhlaT -I node_modules\|.git --git-ignore'
+alias ls='eza -h'
+alias ll='eza -Hhla'
+alias lt='eza -HhlaT -I node_modules\|.git --git-ignore'
 alias ..='cd ..'
 alias ...='cd ../..'
 
