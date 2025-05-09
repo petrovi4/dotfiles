@@ -22,6 +22,10 @@ alias cb='carthage build --platform ios'
 alias cnt_req='find . -print | wc -l'
 alias cnt='ls -1 . | wc -l'
 
+alias prod='ssh plutos-PROD'
+alias prod-gate='ssh plutos-PROD-gate'
+alias dev='ssh plutos-DEV'
+
 alias pi='ssh pi'
 alias np='ssh nanoPi'
 alias h='ssh h'

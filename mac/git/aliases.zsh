@@ -11,7 +11,7 @@ alias gc='git commit -m'
 alias gca='git commit --amend --no-edit'
 alias gcf='git commit -n -m'
 
-alias gp='git push'
+alias gp='git push --follow-tags'
 alias gpl='git pull'
 
 alias gchp='git cherry-pick'
@@ -32,6 +32,8 @@ alias gch='git checkout'
 #alias gchm='git checkout master'
 
 alias gchd='git checkout develop'
+alias gchs='git checkout staging'
+alias gchb='git checkout beta'
 
 alias gm='git merge -m "Auto-Merge"'
 alias gmdt='git merge dev --strategy-option theirs'

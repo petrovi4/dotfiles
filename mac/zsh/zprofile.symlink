@@ -16,3 +16,12 @@ for file in $ZSH_FILES; do
 	# echo "(zprofile)\t Loading $file"
 	source $file
 done
+
+##
+# Your previous /Users/petrovi4/.zprofile file was backed up as /Users/petrovi4/.zprofile.macports-saved_2023-10-12_at_15:58:01
+##
+
+# MacPorts Installer addition on 2023-10-12_at_15:58:01: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+

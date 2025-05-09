@@ -118,3 +118,7 @@ done
 # pt4 # To prevent less from clearing the screen on exit you can start it with the option -X
 # From here https://stackoverflow.com/questions/42021517 
 export LESS="-Xr"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -19,3 +19,6 @@ for file in $ZSH_FILES; do
 		source $file
 	fi
 done
+
+export PATH="$PATH:/Users/petrovi4/.foundry/bin"
+. "$HOME/.cargo/env"

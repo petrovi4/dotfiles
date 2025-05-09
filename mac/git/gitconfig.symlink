@@ -33,3 +33,5 @@
 	prune = true
 [rerere]
 	enabled = true
+[user]
+	email = petrovi4@gmail.com
