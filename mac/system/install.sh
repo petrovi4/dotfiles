@@ -3,8 +3,8 @@
 # command line interface to it that we can use to just install everything, so
 # yeah, let's do that.
 
-echo "› Updating MacOs ..."
-sudo softwareupdate -i -a
+# echo "› Updating MacOs ..."
+# sudo softwareupdate -i -a
 
 # shortcut to this dotfiles path is $SYSTEM_ROOT
 SYSTEM_ROOT=$HOME/.dotfiles/mac

@@ -1,0 +1,55 @@
+c() {
+	cd "$PROJECTS/$1"
+}
+
+
+# Функция для интерактивного выбора хоста и пути
+function smart_remote_fzf() {
+  # Парсим текущую строку для извлечения хоста и пути
+  local current_line="$LBUFFER$RBUFFER"
+  local remote_host=""
+  local start_path="~"
+  
+  # Проверяем, есть ли уже хост в строке (формат: command host:/path)
+  if [[ "$current_line" =~ ([a-zA-Z0-9.-]+):([^[:space:]]*) ]]; then
+    remote_host="$match[1]"
+    start_path="$match[2]"
+    if [[ -z "$start_path" ]]; then
+      start_path="~"
+    fi
+  else
+    # Если хоста нет, запрашиваем его
+    echo -n "Enter remote host: "
+    read remote_host
+  fi
+  
+  if [[ -n "$remote_host" ]]; then
+    # Получаем файлы только из текущего пути и папки до 3 уровней
+    local selected=$(ssh "$remote_host" "
+      # Файлы только в текущем пути (отсортированные по алфавиту)
+      find '$start_path' -maxdepth 1 \\( -name 'node_modules' -o -name '.git' \\) -prune -o -type f -print 2>/dev/null | sort
+      # Папки до 3 уровней
+      find '$start_path' -maxdepth 3 \\( -name 'node_modules' -o -name '.git' \\) -prune -o -type d -print 2>/dev/null
+    " | fzf --height=40% --reverse --preview="ssh $remote_host 'ls -la {}'" --preview-window=right:50%)
+    
+    if [[ -n "$selected" ]]; then
+      # Заменяем текущую строку или добавляем результат
+      if [[ "$current_line" =~ ([a-zA-Z0-9.-]+):([^[:space:]]*) ]]; then
+        # Заменяем путь после двоеточия
+        LBUFFER="${LBUFFER%:*}:$selected"
+      else
+        # Добавляем к текущей строке
+        LBUFFER+="$remote_host:$selected"
+      fi
+      zle reset-prompt
+    fi
+    # Если пользователь нажал ESC в fzf, ничего не делаем - строка остается как была
+  fi
+}
+
+# Регистрируем умную функцию
+zle -N smart_remote_fzf
+
+# Привязываем к Ctrl+R (или другой комбинации)
+bindkey '^f' smart_remote_fzf
+
